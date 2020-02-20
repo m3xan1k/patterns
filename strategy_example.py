@@ -81,6 +81,7 @@ class DownloadThroughProxy(Role):
         return r
 
 
-manager = RequestManager(SimpleDownload())
-r = manager.make_get_request(url='https://example.com')
-print(r.text)
+if __name__ == '__main__':
+    manager = RequestManager(SimpleDownload())
+    r = manager.make_get_request(url='https://example.com')
+    print(r.text)
