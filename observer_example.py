@@ -6,6 +6,9 @@ import requests
 
 
 class Publisher(ABC):
+    """
+    Субъект или издатель в терминологии паттерна
+    """
     @abstractmethod
     def subscribe(self, observer: Observer) -> None:
         pass
@@ -20,6 +23,9 @@ class Publisher(ABC):
 
 
 class AvailabilityChecker(Publisher):
+    """
+    Конкретная реализация субъекта
+    """
     _state = None
     _observers: List[Observer] = []
 
@@ -33,6 +39,9 @@ class AvailabilityChecker(Publisher):
         for observer in self._observers:
             observer.update(self)
 
+    """
+    Бизнес-логика
+    """
     def check(self):
         r = requests.get('https://example.com')
         self._state = r.status_code
@@ -40,11 +49,17 @@ class AvailabilityChecker(Publisher):
 
 
 class Observer(ABC):
+    """
+    Интерфейс абстрактного наблюдателя
+    """
     def update(self, subject: Publisher) -> None:
         pass
 
 
 class EventListenerA(Observer):
+    """
+    Реализация конкретного наблюдателя
+    """
     def update(self, subject: Publisher) -> None:
         if subject._state == 200:
             print('Site is available')
@@ -53,6 +68,9 @@ class EventListenerA(Observer):
 
 
 class EventListenerB(Observer):
+    """
+    Реализация конкретного наблюдателя
+    """
     def update(self, subject: Publisher) -> None:
         if subject._state == 200:
             r = requests.get('https://jsonplaceholder.typicode.com/todos/1')
