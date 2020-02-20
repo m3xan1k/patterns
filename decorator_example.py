@@ -73,10 +73,10 @@ class Sugar(AddOn):
     def get_cost(self):
         return 0.1 + self._coffee.get_cost()
 
-
-my_coffee = HouseBlend()
-print(my_coffee.get_description(), my_coffee.get_cost())
-my_coffee = Milk(my_coffee)
-print(my_coffee.get_description(), my_coffee.get_cost())
-my_coffee = Sugar(my_coffee)
-print(my_coffee.get_description(), my_coffee.get_cost())
+if __name__ == '__main__':
+    my_coffee = HouseBlend()
+    print(my_coffee.get_description(), my_coffee.get_cost())
+    my_coffee = Milk(my_coffee)
+    print(my_coffee.get_description(), my_coffee.get_cost())
+    my_coffee = Sugar(my_coffee)
+    print(my_coffee.get_description(), my_coffee.get_cost())
